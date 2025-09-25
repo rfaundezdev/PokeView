@@ -15,4 +15,7 @@ export class PokeApi {
     return this.httpClient.get(url);
   }
 
+  getPokemonDetails(url: string) : any {
+    return this.httpClient.get(url);
+  }
 }
