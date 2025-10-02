@@ -1,0 +1,18 @@
+@import '../../../public/assets/sass/default';
+
+.sectionPokemonDetails{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .title{
+        text-transform: capitalize;
+    }
+}

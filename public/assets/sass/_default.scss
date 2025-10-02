@@ -1,0 +1,91 @@
+@import './vars';
+
+.type {
+    padding: 4px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 8px;
+    text-transform: capitalize;
+    color: #fff;
+    text-shadow: 1px 1px #00000055;
+    width: 70px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.grass {
+    background-color: $grass;
+}
+
+.fire {
+    background-color: $fire;
+}
+
+.poison {
+    background-color: $poison;
+}
+
+.water {
+    background-color: $water
+}
+
+.bug {
+    background-color: $bug;
+}
+
+.electric {
+    background-color: $electric;
+}
+
+.ground {
+    background-color: $ground;
+}
+
+.fairy {
+    background-color: $fairy
+}
+
+.normal {
+    background-color: $normal;
+}
+
+.flying {
+    background-color: $fliying;
+}
+
+.fighting {
+    background-color: $fighting;
+}
+
+.psychic {
+    background-color: $psychic;
+}
+
+.rock {
+    background-color: $rock;
+}
+
+.ghost {
+    background-color: $ghost;
+}
+
+.ice {
+    background-color: $ice;
+}
+
+.dragon {
+    background-color: $dragon;
+}
+
+.dark {
+    background-color: $dark;
+}
+
+.steel {
+    background-color: $steel;
+}

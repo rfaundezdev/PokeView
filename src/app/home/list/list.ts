@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeApi } from '../../services/poke-api';
 import { MatButtonModule } from '@angular/material/button';
-import { map } from 'rxjs';
-import { Router,RouterLink } from "@angular/router";
+import { tap } from 'rxjs';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-list',
@@ -17,13 +17,12 @@ export class List implements OnInit {
 
   constructor(
     private pokeApi: PokeApi,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.pokeApi.getPokemonList()
       .pipe(
-        map((response: any) => {
+        tap((response: any) => {
           var newArray: any = [];
           response.results.forEach((pokemon: any) => {
             this.pokeApi.getPokemonDetails(pokemon.url).subscribe((details: any) => {
@@ -37,18 +36,14 @@ export class List implements OnInit {
               });
             })
           })
-          return newArray;
+          this.pokemonList = newArray;
         }),
       )
       .subscribe({
-        next: (data: any) => {
-          this.pokemonList = data;
-        }, error: (error: any) => {
+        error: (error: any) => {
           console.error('Error fetching Pokémon list:', error);
         },
-        complete: () => {
-          this.isLoading = false;
-        }
+        complete: () => { }
       });
   }
 }

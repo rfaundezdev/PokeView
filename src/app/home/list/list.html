@@ -1,7 +1,7 @@
 <div class="container">
     @for (pokemon of pokemonList; track $index) {
     <div class="card">
-        <button type="button" mat-button [routerLink]="pokemon.id">
+        <button type="button" mat-button [routerLink]="pokemon.name">
             <p>
                 {{pokemon.id}} - {{pokemon.name}}
             </p>

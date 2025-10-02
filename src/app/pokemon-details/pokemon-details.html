@@ -1,1 +1,31 @@
-<button type="button" [routerLink]="'/'">Regresar</button>
+<div class="sectionPokemonDetails">
+    <div class="container">
+        @if (pokemonDetails) {
+        <div class="top">
+            <h1 class="title">
+                {{pokemonDetails.id}} - {{pokemonDetails.name}}
+            </h1>
+            <div class="info">
+                @for(pokemon of pokemonDetails.types; track $index){
+                <p class="type {{pokemon.type.name}}">{{pokemon.type.name}}</p>
+                }
+            </div>
+        </div>
+        <div>
+            <img src="{{pokemonDetails.img.front}}" alt="{{pokemonDetails.name}} image">
+            <img src="{{pokemonDetails.img.back}}" alt="{{pokemonDetails.name}} image">
+            <img src="{{pokemonDetails.img.front_shiny}}" alt="{{pokemonDetails.name}} image">
+            <img src="{{pokemonDetails.img.back_shiny}}" alt="{{pokemonDetails.name}} image">
+        </div>
+        <div class="bottom">
+            @for(text of pokemonDetails.text; track $index){
+                <mat-divider></mat-divider>
+                <p>{{text.flavor_text}}</p>
+            }
+        </div>
+        }@else {
+        <p>Cargando...</p>
+        }
+        <button type="button" mat-button [routerLink]="'/'">Back to list</button>
+    </div>
+</div>
