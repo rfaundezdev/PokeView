@@ -1,59 +1,67 @@
-# Pokedex
+# PokeView
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.1.
+Aplicación web que consume la [PokeAPI](https://pokeapi.co/) para mostrar un listado de los 151 Pokémon originales con su sprite animado y tipo(s), y permite ver el detalle de cada uno con su descripción oficial.
 
-## Development server
+## Estado del proyecto
 
-To start a local development server, run:
+✅ **Funcional y desplegado.** El flujo completo (listado y detalle de cada Pokémon) está terminado y operativo.
 
-```bash
-ng serve
-```
+## Demo en vivo
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+🔗 **[rfaundezdev.github.io/PokeView](https://rfaundezdev.github.io/PokeView/)**
 
-## Code scaffolding
+No requiere cuenta ni configuración: es de acceso público y libre.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Funcionalidades
 
-```bash
-ng generate component component-name
-```
+- **Listado de Pokémon** obtenido en tiempo real desde la PokeAPI, mostrando sprite animado, número, nombre y tipo(s) de cada uno.
+- **Vista de detalle** por Pokémon (ruta dinámica `/:id`), que combina datos de dos endpoints distintos de la API: ficha técnica (sprites, tipos) y descripción de especie, filtrando el texto en inglés entre los múltiples idiomas que entrega la API.
+- **Sprites animados** (generación V, estilo Black/White) para frente, espalda y sus variantes shiny.
+- **Routing dinámico** entre el listado y el detalle de cada Pokémon.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Stack técnico
 
-```bash
-ng generate --help
-```
+| Categoría | Tecnologías |
+|---|---|
+| Frontend | Angular 20 (componentes standalone), Angular Material, Angular CDK |
+| Datos | HttpClient consumiendo la [PokeAPI](https://pokeapi.co/) (REST) |
+| Reactividad | RxJS (`tap`, composición de llamadas HTTP anidadas) |
+| Testing | Karma + Jasmine |
+| Lenguaje | TypeScript, SCSS |
+| Despliegue | angular-cli-ghpages |
 
-## Building
+## Arquitectura
 
-To build the project run:
+- **Componentes standalone**, sin `NgModules`.
+- **`PokeApi`**: servicio único que centraliza el consumo de la PokeAPI (listado y detalle), reutilizado tanto en el listado como en la vista de detalle.
+- **Composición de datos asíncronos**: la vista de detalle encadena una segunda llamada HTTP (a `species.url`) para obtener la descripción del Pokémon, y filtra entre los distintos idiomas devueltos por la API para quedarse solo con el texto en inglés.
+- **Componentes compartidos** (`shared/header`, `shared/footer`) reutilizados entre vistas.
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+## Cómo ejecutar el proyecto localmente
 
 ```bash
-ng e2e
+git clone https://github.com/rfaundezdev/PokeView.git
+cd PokeView
+npm install
+ng serve -o
+# Abrir http://localhost:4200
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+No requiere configuración adicional ni claves de API: la PokeAPI es pública y de acceso libre.
 
-## Additional Resources
+## Estructura del proyecto
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```
+src/app/
+├── home/                  # Vista principal con el listado de Pokémon
+│   └── list/               # Componente de listado (cards con sprite y tipos)
+├── pokemon-details/         # Vista de detalle por Pokémon
+├── services/
+│   └── poke-api.ts           # Servicio de consumo de la PokeAPI
+└── shared/                    # Header y footer reutilizables
+```
+
+## Autor
+
+**Ramón Faúndez Bravo**
+[LinkedIn](https://linkedin.com/in/faundezramon92) · [GitHub](https://github.com/rfaundezdev)
